@@ -18,7 +18,7 @@ router.post("/signup", async (req, res) => {
         // create a new user
         const user = await User.create(req.body);
         // send new user as response
-        res.json(user);
+        res.json(serializeUser(user));
     } catch (error) {
         res.status(400).json({ error });
     }
@@ -38,7 +38,7 @@ router.post("/signup-admin", async (req, res) => {
         // create a new user
         const user = await User.create(req.body);
         // send new user as response
-        res.json(user);
+        res.json(serializeUser(user));
     } catch (error) {
         res.status(400).json({ error });
     }

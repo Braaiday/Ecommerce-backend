@@ -1,7 +1,7 @@
 require("dotenv").config(); // loading env variables
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
-const Products = require("../models/Products");
+const Product = require("../models/Product");
 const passport = require("passport");
 
 
@@ -12,7 +12,7 @@ const createContext = (req, res, next) => {
     req.context = {
         models: {
             User,
-            Products,
+            Product,
         },
     };
     next();
@@ -61,9 +61,9 @@ const userAuth = passport.authenticate("jwt", { session: false });
 
 // Role authorization to limit certain roles from hitting endpoints they should not
 const checkRole = roles => (req, res, next) => {
- !roles.includes(req.user.role)
- ? res.status(401).json("Unauthorized")
- : next();
+    !roles.includes(req.user.role)
+        ? res.status(401).json("Unauthorized")
+        : next();
 }
 
 // export custom middleware
