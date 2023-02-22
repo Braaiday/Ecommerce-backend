@@ -1,4 +1,4 @@
-const { Router } = require("express"); // import Router from express
+const { Router, json } = require("express"); // import Router from express
 const { isLoggedIn, userAuth, checkRole } = require("../middleware/middleware"); // import isLoggedIn custom middleware
 const path = require('path');
 const router = Router();
@@ -19,13 +19,23 @@ var upload = multer({ storage: storage });
 // Index Route with isLoggedIn middleware
 router.get("/", async (req, res) => {
   const { Product } = req.context.models;
-  return res.json("Not yet implemented");
+  try {
+    let products = await Product.find();
+    res.json(products);
+  } catch (err) {
+    res.json(err)
+  }
 });
 
 // Show Route with isLoggedIn middleware
 router.get("/:id", async (req, res) => {
   const { Product } = req.context.models;
-  return res.json("Not yet implemented");
+  try {
+    let products = await Product.find();
+    res.json(products);
+  } catch (err) {
+    res.json(err)
+  }
 });
 
 // create Route with isLoggedIn middleware
