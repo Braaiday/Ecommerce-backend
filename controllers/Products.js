@@ -31,8 +31,8 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   const { Product } = req.context.models;
   try {
-    let products = await Product.find();
-    res.json(products);
+    let product = await Product.find({ _id: req.params.id });
+    res.json(product);
   } catch (err) {
     res.json(err)
   }
