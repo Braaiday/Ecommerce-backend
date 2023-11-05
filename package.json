@@ -1,5 +1,5 @@
 {
-  "name": "lantech-backend",
+  "name": "Ecommerce-backend",
   "version": "1.0.0",
   "description": "E-commerce backend and admin portal api",
   "main": "server.js",
@@ -8,7 +8,7 @@
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
-  "author": "lantech",
+  "author": "Putter",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
