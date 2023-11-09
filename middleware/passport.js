@@ -1,15 +1,12 @@
-
-const { Strategy, ExtractJwt } = require('passport-jwt');
 require("dotenv").config(); // loading env variables
+const { Strategy, ExtractJwt } = require('passport-jwt');
 const User = require("../models/User");
 
-// These options are used in authorizing routes
 const opts = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: process.env.SECRET
 }
 
-// This function is used in authorizing routes
 module.exports = passport => {
     passport.use(new Strategy(opts, async (payload, done) => {
         await User.findById(payload.id).then(async user => {

@@ -1,6 +1,5 @@
-const { Router, json } = require("express"); // import Router from express
+const { Router } = require("express"); // import Router from express
 const { isLoggedIn, userAuth, checkRole } = require("../middleware/middleware"); // import isLoggedIn custom middleware
-const path = require('path');
 const router = Router();
 const multer = require('multer');
 
@@ -15,8 +14,6 @@ var storage = multer.diskStorage({
 });
 var upload = multer({ storage: storage });
 
-
-// Index Route with isLoggedIn middleware
 router.get("/", async (req, res) => {
   const { Product } = req.context.models;
   try {
@@ -27,7 +24,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Show Route with isLoggedIn middleware
 router.get("/:id", async (req, res) => {
   const { Product } = req.context.models;
   try {
@@ -38,7 +34,6 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// create Route with isLoggedIn middleware
 router.post("/", isLoggedIn, userAuth, checkRole(["admin"]), async (req, res) => {
   console.log(req.body);
   const url = req.protocol + '://' + req.get('host')
@@ -55,13 +50,11 @@ router.post("/", isLoggedIn, userAuth, checkRole(["admin"]), async (req, res) =>
   }
 });
 
-// update Route with isLoggedIn middleware
 router.put("/:id", isLoggedIn, userAuth, checkRole(["admin"]), async (req, res) => {
   const { Product } = req.context.models;
   return res.json("Not yet implemented");
 });
 
-// update Route with isLoggedIn middleware
 router.delete("/:id", isLoggedIn, userAuth, checkRole(["admin"]), async (req, res) => {
   const { Product } = req.context.models;
   return res.json("Not yet implemented");
